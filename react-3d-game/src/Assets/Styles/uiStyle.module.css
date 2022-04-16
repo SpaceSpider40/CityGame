@@ -1,0 +1,69 @@
+body {
+  background-color: black;
+}
+
+.statsBar {
+  position: absolute;
+  bottom: 0vh;
+  height: 10vh;
+  width: 100vw;
+  background-color: #333333;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bottomBar {
+  position: absolute;
+  bottom: 10vh;
+  height: 10vh;
+  width: 100vw;
+  background-color: #333333;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.progres {
+  background-color: #3dad2e;
+  -webkit-animation: progressBar 10s linear;
+          animation: progressBar 10s linear;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  height: 1vh;
+}
+
+@-webkit-keyframes progressBar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=uiStyle.module.css.map */
