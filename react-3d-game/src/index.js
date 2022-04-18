@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Game from './Assets/Scripts/Game';
+import { InitStorage } from './Assets/Scripts/Storage';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <InitStorage/>
     <Game />
   </React.StrictMode>,
   document.getElementById('root')
