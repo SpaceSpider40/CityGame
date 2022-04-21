@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { OrbitControls, Stars } from "@react-three/drei"
 import { Road, House1, House2, House3, House4, House5, House6, Powerplant1, Powerplant2, WaterTreatment1, WaterTreatment2 } from "./Buildings";
@@ -6,8 +6,40 @@ import style from "../Styles/uiStyle.module.css"
 import ls from 'local-storage'
 import { delStorage } from "./Storage";
 import Progress from "./Progress";
+import mouse from "./mouse";
 
 export default function Game() {
+
+    const Cursor = () => {
+        const { clientX, clientY } = mouse();
+
+        return (
+            <div
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    zIndex: 9999,
+                    pointerEvents: "none"
+                }}
+            >
+                <img
+                    src=""
+                    style={{
+                        position: "absolute",
+                        left: clientX,
+                        top: clientY,
+                        transform: "translate(15%, 30%)",
+                        border: "none",
+                        outline: "none"
+                    }}
+                />
+            </div>
+        );
+    };
+
     let newTiles = []
     const [buildings, setBuildings] = useState(JSON.parse(ls.get('buildings')))
     const [stats, setStats] = useState(JSON.parse(ls.get('stats')))
@@ -48,40 +80,43 @@ export default function Game() {
     generateMap();
 
     return <div style={{ width: "100vw", height: "100vh" }}>
+
         <Canvas>
             <Stars></Stars>
             <ambientLight></ambientLight>
             <OrbitControls />
-            {newTiles.map((props) => (<Tile pos={props.position} num={props.tileId} />))}
-            {buildings.map((props) => (props.house1 !== undefined ? <House1 pos={props.house1.cords} /> : null))}
-            {buildings.map((props) => (props.house2 !== undefined ? <House2 pos={props.house2.cords} /> : null))}
-            {buildings.map((props) => (props.house3 !== undefined ? <House3 pos={props.house3.cords} /> : null))}
-            {buildings.map((props) => (props.house4 !== undefined ? <House4 pos={props.house4.cords} /> : null))}
-            {buildings.map((props) => (props.house5 !== undefined ? <House5 pos={props.house5.cords} /> : null))}
-            {buildings.map((props) => (props.house6 !== undefined ? <House6 pos={props.house6.cords} /> : null))}
-            {buildings.map((props) => (props.road !== undefined ? <Road pos={props.road.cords} /> : null))}
-            {buildings.map((props) => (props.powerplant1 !== undefined ? <Powerplant1 pos={props.powerplant1.cords} /> : null))}
-            {buildings.map((props) => (props.powerplant2 !== undefined ? <Powerplant2 pos={props.powerplant2.cords} /> : null))}
-            {buildings.map((props) => (props.waterTreatment1 !== undefined ? <WaterTreatment1 pos={props.waterTreatment1.cords} /> : null))}
-            {buildings.map((props) => (props.waterTreatment2 !== undefined ? <WaterTreatment2 pos={props.waterTreatment2.cords} /> : null))}
+            <Suspense>
+                {newTiles.map((props) => (<Tile pos={props.position} num={props.tileId} />))}
+                {buildings.map((props) => (props.house1 !== undefined ? <House1 pos={props.house1.cords} /> : null))}
+                {buildings.map((props) => (props.house2 !== undefined ? <House2 pos={props.house2.cords} /> : null))}
+                {buildings.map((props) => (props.house3 !== undefined ? <House3 pos={props.house3.cords} /> : null))}
+                {buildings.map((props) => (props.house4 !== undefined ? <House4 pos={props.house4.cords} /> : null))}
+                {buildings.map((props) => (props.house5 !== undefined ? <House5 pos={props.house5.cords} /> : null))}
+                {buildings.map((props) => (props.house6 !== undefined ? <House6 pos={props.house6.cords} /> : null))}
+                {buildings.map((props) => (props.road !== undefined ? <Road pos={props.road.cords} /> : null))}
+                {buildings.map((props) => (props.powerplant1 !== undefined ? <Powerplant1 pos={props.powerplant1.cords} /> : null))}
+                {buildings.map((props) => (props.powerplant2 !== undefined ? <Powerplant2 pos={props.powerplant2.cords} /> : null))}
+                {buildings.map((props) => (props.waterTreatment1 !== undefined ? <WaterTreatment1 pos={props.waterTreatment1.cords} /> : null))}
+                {buildings.map((props) => (props.waterTreatment2 !== undefined ? <WaterTreatment2 pos={props.waterTreatment2.cords} /> : null))}
+            </Suspense>
         </Canvas>
         <div className={style.adv} style={{ height: advancementsTab }}>
-            <div className={style.advRow} style={{backgroundColor:tier>=1?"green":"transparent", borderRight:tier===1?"solid 10px #0b5c00":"none"}}>
+            <div className={style.advRow} style={{ backgroundColor: tier >= 1 ? "green" : "transparent", borderRight: tier === 1 ? "solid 10px #0b5c00" : "none" }}>
                 <div>Tier 1</div><div>H1</div>
             </div>
-            <div className={style.advRow} style={{backgroundColor:tier>=2?"green":"transparent", borderRight:tier===2?"solid 10px #0b5c00":"none"}}>
+            <div className={style.advRow} style={{ backgroundColor: tier >= 2 ? "green" : "transparent", borderRight: tier === 2 ? "solid 10px #0b5c00" : "none" }}>
                 <div>Tier 2</div><div>H2</div>
             </div>
-            <div className={style.advRow} style={{backgroundColor:tier>=3?"green":"transparent", borderRight:tier===3?"solid 10px #0b5c00":"none"}}>
+            <div className={style.advRow} style={{ backgroundColor: tier >= 3 ? "green" : "transparent", borderRight: tier === 3 ? "solid 10px #0b5c00" : "none" }}>
                 <div>Tier 3</div><div>H3</div>
             </div>
-            <div className={style.advRow} style={{backgroundColor:tier>=4?"green":"transparent", borderRight:tier===4?"solid 10px #0b5c00":"none"}}>
+            <div className={style.advRow} style={{ backgroundColor: tier >= 4 ? "green" : "transparent", borderRight: tier === 4 ? "solid 10px #0b5c00" : "none" }}>
                 <div>Tier 4</div><div className={style.advCol}><div>H4</div><div>PP2</div><div>WT2</div></div>
             </div>
-            <div className={style.advRow} style={{backgroundColor:tier>=5?"green":"transparent", borderRight:tier===5?"solid 10px #0b5c00":"none"}}>
+            <div className={style.advRow} style={{ backgroundColor: tier >= 5 ? "green" : "transparent", borderRight: tier === 5 ? "solid 10px #0b5c00" : "none" }}>
                 <div>Tier 5</div><div>H5</div>
             </div>
-            <div className={style.advRow} style={{backgroundColor:tier>=6?"green":"transparent", borderRight:tier===6?"solid 10px #0b5c00":"none"}}>
+            <div className={style.advRow} style={{ backgroundColor: tier >= 6 ? "green" : "transparent", borderRight: tier === 6 ? "solid 10px #0b5c00" : "none" }}>
                 <div>Tier 6</div><div>H6</div>
             </div>
         </div>
@@ -90,7 +125,7 @@ export default function Game() {
             <div><button onClick={() => (delStorage())} className={style.btnY}>Yes</button><button onClick={() => setComfirmDel("none")} className={style.btnN}>No</button></div>
         </div>
         <div className={style.exitBtn}><button onClick={() => (setComfirmDel("flex"))} id="b">&#8634;</button><label for="b">Restart?</label></div>
-        <div className={style.techBut}  onClick={() => (advancementsTab === "0vh" ? setAdvancementsTab("78vh") : setAdvancementsTab("0vh"))}><div style={{width:getTierProgression(tier,stats.stats.residents)+"%"}} onClick={() => (advancementsTab === "0vh" ? setAdvancementsTab("78vh") : setAdvancementsTab("0vh"))}>Tier: {tier}</div></div>
+        <div className={style.techBut} onClick={() => (advancementsTab === "0vh" ? setAdvancementsTab("78vh") : setAdvancementsTab("0vh"))}><div style={{ width: getTierProgression(tier, stats.stats.residents) + "%" }} onClick={() => (advancementsTab === "0vh" ? setAdvancementsTab("78vh") : setAdvancementsTab("0vh"))}>Tier: {tier}</div></div>
         <div className={style.statsBar}>
             <div><div><span>Money </span>{stats.stats.money}</div><div className={style.progres}></div></div>
             <div><span>Income </span>{stats.stats.income}</div>
@@ -119,9 +154,20 @@ export default function Game() {
                     <button onClick={() => (setPickedBuilding("waterTreatment2"))}>WT2</button>
                 </div>
             </div>
-
-            <button onClick={() => (setPickedBuilding("road"))}>R</button>
+            <div>
+                <span>Road</span>
+                <div>
+                    <button onClick={() => (setPickedBuilding("road"))}>R</button>
+                </div>
+            </div>
+            <div>
+                <span>Remove</span>
+                <div>
+                    <button onClick={() => (setPickedBuilding("remove"))}>Remove</button>
+                </div>
+            </div>
         </div>
+        <Cursor />
     </div>
 
     function housesIncome(buds) {
@@ -425,6 +471,75 @@ export default function Game() {
                     })
                 }
                 break;
+            case 'remove':
+                for (let i = 0; i < newBuildings.length; i++) {
+                    if (newBuildings[i].house1 !== undefined) {
+                        if (arraysEqual(newBuildings[i].house1.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+                    if (newBuildings[i].house2 !== undefined) {
+                        if (arraysEqual(newBuildings[i].house2.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].house3 !== undefined) {
+                        if (arraysEqual(newBuildings[i].house3.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].house4 !== undefined) {
+                        if (arraysEqual(newBuildings[i].house4.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].house5 !== undefined) {
+                        if (arraysEqual(newBuildings[i].house5.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].house6 !== undefined) {
+                        if (arraysEqual(newBuildings[i].house6.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].powerplant1 !== undefined) {
+                        if (arraysEqual(newBuildings[i].powerplant1.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].powerplant2 !== undefined) {
+                        if (arraysEqual(newBuildings[i].powerplant2.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].waterTreatment1 !== undefined) {
+                        if (arraysEqual(newBuildings[i].waterTreatment1.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].waterTreatment2 !== undefined) {
+                        if (arraysEqual(newBuildings[i].waterTreatment2.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                    if (newBuildings[i].road !== undefined && occupied) {
+                        if (arraysEqual(newBuildings[i].road.cords, cords)) {
+                            newBuildings.splice(i, 1)
+                        }
+                    }
+
+                }
+                break;
             default:
                 console.error('UNKNOWN BUILDING TYPE')
                 break;
@@ -476,6 +591,8 @@ export default function Game() {
             </mesh>
         )
     }
+
+
 }
 
 function arraysEqual(a, b) {
@@ -488,19 +605,20 @@ function arraysEqual(a, b) {
     return true;
 }
 
-function getTierProgression(tier, residents){
-    switch(tier){
+function getTierProgression(tier, residents) {
+    switch (tier) {
         case 1:
-            return (residents)/100*100;
+            return (residents) / 100 * 100;
         case 2:
-            return (residents)/500*100;
+            return (residents - 100) / 400 * 100;
         case 3:
-            return (residents)/1000*100;
-        case 4: 
-            return (residents)/3000*100;
-        case 5: 
-            return (residents)/6000*100;
+            return (residents - 500) / 500 * 100;
+        case 4:
+            return (residents - 1000) / 2000 * 100;
+        case 5:
+            return (residents - 3000) / 3000 * 100;
         case 6:
             return 100;
     }
 }
+

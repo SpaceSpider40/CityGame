@@ -5,7 +5,7 @@ export function House1(props) {
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
         >
-            <boxBufferGeometry attach="geometry" args={[0.5, height, 0.5]} />
+            <boxBufferGeometry attach="geometry" args={[0.7, height, 0.7]} />
             <meshLambertMaterial attach="material" color="gray" />
         </mesh>
     )
