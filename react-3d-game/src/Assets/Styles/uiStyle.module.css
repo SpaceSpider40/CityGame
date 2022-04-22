@@ -8,7 +8,7 @@ body {
   height: 10vh;
   width: 100vw;
   background-color: #333333;
-  color: white;
+  color: #cacaca;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -26,7 +26,7 @@ body {
   height: 10vh;
   width: 100vw;
   background-color: #333333;
-  color: white;
+  color: #cacaca;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,15 +38,37 @@ body {
           align-items: center;
 }
 
+.bottomBar div div button {
+  border-collapse: collapse;
+  background-color: #262626;
+  border: solid 1px #333333;
+  cursor: pointer;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.bottomBar div div button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .progres {
   background-color: #3dad2e;
-  -webkit-animation: progressBar 10s linear;
-          animation: progressBar 10s linear;
+  -webkit-animation-duration: 10s;
+          animation-duration: 10s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   height: 1vh;
+  -webkit-transition-duration: 10s;
+          transition-duration: 10s;
+  -webkit-transform-style: linear;
+          transform-style: linear;
+  -webkit-animation-name: progressBar;
+          animation-name: progressBar;
 }
 
 @-webkit-keyframes progressBar {
@@ -227,5 +249,77 @@ body {
 .btnN:hover {
   cursor: pointer;
   background-color: red;
+}
+
+.decriptionWindow {
+  position: absolute;
+  left: 0vh;
+  bottom: 24vh;
+  margin: 5px;
+  background-color: #333333;
+  padding: 0.4em;
+  font-size: 1.2rem;
+  color: #cacaca;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border-collapse: collapse;
+  width: 20vw;
+}
+
+.decriptionWindowLabel {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.decriptionWindowContent {
+  border: 4px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.2em;
+}
+
+.decriptionWindowContent span {
+  border: none;
+  border-bottom: 4px solid black;
+}
+
+.decriptionWindowContent div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.decriptionWindowContent div span {
+  border: none;
+}
+
+.feedbackWindow {
+  position: absolute;
+  opacity: 1;
+  left: 50%;
+  bottom: 23vh;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  font-size: 1.4rem;
+  color: red;
+  background-color: rgba(133, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 0.1em;
+  border: solid rgba(133, 0, 0, 0.7);
 }
 /*# sourceMappingURL=uiStyle.module.css.map */

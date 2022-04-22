@@ -4,8 +4,10 @@ export function House1(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
-            <boxBufferGeometry attach="geometry" args={[0.7, height, 0.7]} />
+            <boxBufferGeometry attach="geometry" args={[0.5, height, 0.5]} />
             <meshLambertMaterial attach="material" color="gray" />
         </mesh>
     )
@@ -17,6 +19,8 @@ export function House2(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.7, height, 0.7]} />
             <meshLambertMaterial attach="material" color="gray" />
@@ -30,6 +34,8 @@ export function House3(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.8, height, 0.8]} />
             <meshLambertMaterial attach="material" color="gray" />
@@ -43,6 +49,8 @@ export function House4(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.8, height, 0.8]} />
             <meshLambertMaterial attach="material" color="gray" />
@@ -56,6 +64,8 @@ export function House5(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.8, height, 0.8]} />
             <meshLambertMaterial attach="material" color="gray" />
@@ -69,6 +79,8 @@ export function House6(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.8, height, 0.8]} />
             <meshLambertMaterial attach="material" color="gray" />
@@ -82,6 +94,8 @@ export function Road(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[1, height, 1]} />
             <meshLambertMaterial attach="material" color="#2e2e2e" />
@@ -95,6 +109,8 @@ export function Powerplant1(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.4, height, 0.8]} />
             <meshLambertMaterial attach="material" color="orange" />
@@ -108,6 +124,8 @@ export function Powerplant2(props) {
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.6, height, 0.8]} />
             <meshLambertMaterial attach="material" color="orange" />
@@ -121,6 +139,8 @@ export function WaterTreatment1(props){
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.3, height, 0.3]} />
             <meshLambertMaterial attach="material" color="darkblue" />
@@ -134,6 +154,8 @@ export function WaterTreatment2(props){
         <mesh
             {...props}
             position={[props.pos[0], height / 2, props.pos[2]]}
+            castShadow
+            receiveShadow
         >
             <boxBufferGeometry attach="geometry" args={[0.8, height, 0.8]} />
             <meshLambertMaterial attach="material" color="darkblue" />
