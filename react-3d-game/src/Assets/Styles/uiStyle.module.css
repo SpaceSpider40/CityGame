@@ -114,6 +114,8 @@ body {
   padding: 5px;
   cursor: pointer;
   background-color: green;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .techBut div:hover {
